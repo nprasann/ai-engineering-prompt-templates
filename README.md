@@ -64,9 +64,18 @@ Use prompts in short cycles:
 - Ask for tests or verification steps whenever code changes.
 - Treat AI output as a draft until reviewed by a human.
 
+## Security Note
+
+Before publishing, forking, or sharing generated content, scan for secrets, credentials, private URLs, internal hostnames, production data, customer data, sensitive logs, and proprietary content. Use placeholders for environment-specific values and verify that `.gitignore` excludes local secret files such as `.env`, `.env.*`, `*.key`, and `*.pem`.
+
+This repository is a prompt-template library only. It should not contain real application secrets, production configuration, customer data, or private implementation details.
+
+## Contributing
+
+Contributions should follow [CONTRIBUTING.md](CONTRIBUTING.md). New prompts must use the standard prompt format, rely on placeholders for project-specific details, and stay generic enough to be reused across teams and AI coding assistants.
+
 ## Repository Layout
 
 - `prompts/`: Reusable prompts organized by engineering workflow.
 - `templates/`: Markdown templates for common project artifacts.
 - `examples/`: Generic example project scenarios showing how prompts can be applied.
-
