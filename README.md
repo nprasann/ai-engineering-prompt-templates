@@ -1,19 +1,31 @@
 # AI Engineering Prompt Templates
 
-A vendor-neutral prompt-template library for AI-assisted software engineering.
+A vendor-neutral prompt-template library for AI-assisted software engineering. Prompts are reusable software engineering artifacts.
 
 These prompts are designed for GitHub Copilot Chat, Codex, Claude Code, Cursor, local LLM workflows, and similar AI coding assistants. They help developers and technical managers run small, focused AI coding sessions for repo bootstrapping, refactoring, documentation, testing, architecture, and delivery planning.
 
-## What This Repository Covers
+## What This Repo Is For
 
-- Create new repositories and local projects.
-- Convert ideas into implementation-ready repo plans.
-- Create `AGENTS.md`, instruction files, and session logs.
-- Analyze and refactor existing codebases.
-- Review architecture and document design decisions.
-- Generate test plans, unit tests, integration tests, and test-gap reports.
-- Create README files, developer guides, runbooks, and release checklists.
-- Prepare generic public-release sanitization reviews.
+Use this repository when you want repeatable prompts for common software engineering workflows:
+
+- Repo bootstrapping and local project creation.
+- `AGENTS.md`, instruction files, and session logs.
+- Codebase analysis and behavior-preserving refactors.
+- Architecture reviews, architecture docs, ADRs, and tradeoff analysis.
+- Test plans, unit tests, integration tests, and test-gap analysis.
+- README files, developer guides, runbooks, and release checklists.
+- Public-release sanitization and documentation cleanup.
+
+Small focused prompts are usually better than large generic prompts. Planning and execution should usually be separate sessions: first ask the assistant to inspect and plan, then ask it to make bounded changes after you review the plan.
+
+## 2-Minute Quick Start
+
+1. Pick a prompt from `prompts/`.
+2. Copy it into GitHub Copilot Chat, Codex, Claude Code, Cursor, or another coding assistant.
+3. Replace placeholders such as `<PROJECT_NAME>`, `<TECH_STACK>`, `<TASK>`, and `<CONSTRAINTS>`.
+4. Ask the assistant to inspect relevant files before editing.
+5. Review the plan, then run a separate focused execution prompt if changes are needed.
+6. Review diffs, run tests, and inspect generated files before committing.
 
 ## How to Use
 
@@ -25,6 +37,18 @@ These prompts are designed for GitHub Copilot Chat, Codex, Claude Code, Cursor, 
 6. Review diffs, run tests, and inspect generated files before committing.
 
 Never commit secrets, credentials, tokens, customer data, private notes, production data, or proprietary code that is not meant to be shared.
+
+## Folder Structure
+
+```text
+.
+├── prompts/      # Reusable prompt templates organized by workflow
+├── templates/    # Markdown artifact templates for repo docs and workflows
+├── examples/     # Generic example scenarios showing prompt usage
+├── README.md
+├── CONTRIBUTING.md
+└── LICENSE
+```
 
 ## Placeholder Reference
 
@@ -39,11 +63,21 @@ Never commit secrets, credentials, tokens, customer data, private notes, product
 
 ## Platform Notes
 
-- GitHub Copilot Chat: best for repo-aware Q&A, small edits, tests, and explanations.
-- Codex-style agents: best for multi-file repo tasks and automated edits.
+- GitHub Copilot Chat: best for repo-aware Q&A, small edits, tests, and explanations inside a GitHub or IDE workflow.
+- Codex / agent-based tools: best for multi-file repo tasks, automated edits, inspection-to-implementation loops, and verification summaries.
 - Claude Code: strong for reasoning-heavy refactors and large context.
 - Cursor: strong for IDE-integrated editing.
 - Local LLMs: useful for private/offline work but less reliable for large refactors.
+
+## Prompt Design Principles
+
+- Make the prompt specific to one outcome.
+- Separate planning prompts from execution prompts when risk or scope is meaningful.
+- Tell the assistant what files to inspect first.
+- Include required inputs and expected output.
+- Ask for tests, verification, and a concise change summary.
+- Prefer placeholders over hardcoded project details.
+- Keep prompts vendor-neutral unless a tool-specific workflow is intentional.
 
 ## Recommended Session Pattern
 
@@ -61,6 +95,7 @@ Use prompts in short cycles:
 - Prefer minimal, reversible changes.
 - Keep generated examples generic.
 - Avoid private identifiers, internal project names, secrets, and real production data.
+- Avoid proprietary code, private organizational context, customer data, internal URLs, and personal contact information.
 - Ask for tests or verification steps whenever code changes.
 - Treat AI output as a draft until reviewed by a human.
 
@@ -74,8 +109,14 @@ This repository is a prompt-template library only. It should not contain real ap
 
 Contributions should follow [CONTRIBUTING.md](CONTRIBUTING.md). New prompts must use the standard prompt format, rely on placeholders for project-specific details, and stay generic enough to be reused across teams and AI coding assistants.
 
-## Repository Layout
+## Public-Release Safety Checklist
 
-- `prompts/`: Reusable prompts organized by engineering workflow.
-- `templates/`: Markdown templates for common project artifacts.
-- `examples/`: Generic example project scenarios showing how prompts can be applied.
+Before publishing a prompt, template, example, or generated artifact, confirm:
+
+- No secrets, tokens, credentials, private keys, or passwords.
+- No `.env` files or environment-specific config values.
+- No real production data, customer data, logs, traces, or screenshots.
+- No internal URLs, private hostnames, or organization-specific systems.
+- No personal email addresses, phone numbers, or private contact details.
+- No proprietary code or documentation not intended for publication.
+- Examples use placeholders or generic sample values.
