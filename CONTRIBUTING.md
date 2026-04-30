@@ -62,3 +62,16 @@ Each prompt file must include:
 4. Review diffs for accidental private details.
 5. Run any relevant formatting or link checks if your editor provides them.
 6. Open a pull request with a short summary of the use case and safety review.
+
+## Add a New Skill
+
+Use skills for reusable workflow guidance that would make an individual prompt too long. A skill should describe how to approach a class of work, not one private project.
+
+1. Add the skill under `skills/shared/` unless it is intentionally scoped elsewhere.
+2. Start from `templates/skill.template.md`.
+3. Use a generic kebab-case filename such as `database-migration-skill.md`.
+4. Include when to use it, context, instructions, rules, and validation.
+5. Use placeholders such as `<PROJECT_NAME>`, `<TECH_STACK>`, `<TASK>`, `<CONSTRAINTS>`, `<FILES_TO_INSPECT>`, and `<OUTPUT_FORMAT>`.
+6. Keep examples public-safe and avoid real environment details.
+
+Skills should complement prompts. They should not override the prompt's task, constraints, or output format.
